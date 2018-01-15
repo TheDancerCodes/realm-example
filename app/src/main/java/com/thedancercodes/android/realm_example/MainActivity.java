@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.thedancercodes.android.realm_example.data.Dog;
 
+import java.util.Collection;
+
 import io.realm.Realm;
 import io.realm.exceptions.RealmPrimaryKeyConstraintException;
 
@@ -57,6 +59,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void queryData(View view) {
+
+        // Returns the data in the order in which it was stored in the Database
+        Collection<Dog> dogs = realm.where(Dog.class).findAll().sort("age");
+
+        for (Dog dog:
+             dogs) {
+            log(dog.toString());
+        }
     }
 
     /**
